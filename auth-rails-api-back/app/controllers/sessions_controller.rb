@@ -12,10 +12,12 @@ class SessionsController < ApplicationController
             #success
             render json: @user
         else
-            render json: {
-                error: "Invalid credentials"
-
-            }, status: :unauthorized
+            resp = {
+                error: "Invalid credentials",
+                details: @user.errors.full_messages
+                #allows mapping through and returning various details on errors
+            }
+            render json: resp, status: :unauthorized 
         end
 
 
