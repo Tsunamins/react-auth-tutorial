@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
         #changeing these to params[:user][:email], is not part of fixing initial 500 server error
         #these changes below, [:user][:email] and [:user][:password]
         #ensure credentials are passed in, without these correct credentials throw the error "invalid credentials"
+        #jsons and error formats change in later code, but don't affect these errors
         @user = User.find_by(email: params[:user][:email])
 
 
