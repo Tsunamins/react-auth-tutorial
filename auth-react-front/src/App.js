@@ -42,15 +42,33 @@ class App extends React.Component {
     }
     fetch("http://localhost:3000/login", headers)
       .then(resp => resp.json())
-      .then(console.log)
-      .catch(console.log)
+      .then(userJSON => {
+        if(userJSON.error){
+          //failure, exmpl of handling server errors
+          alert("invalid credentials")
+        } else {
+          //sucess
+
+        
+        this.setState({
+          currentUser: userJSON
+          //tutorial shows an error with the code above and is fixed by userJSON.user, but my current code only works like this without errorss, adding .user, causes nothing to happen
+        })
+        }
+      })
+      .catch(console.log) // example of handling javascript errors
     
      
 
   }
 
-  render() { return (
+  render() {
+    const {currentUser} =this.state 
+    return (
+   
     <div className="App">
+      <h2>{currentUser ? `Logged in as ${currentUser.name}` : "Not logged in"} </h2>
+      
       Welcome User (using user name)(will need state in this context, bc not using redux yet)(login form needed, built through components)
       Done through Login.js
       <Login 
