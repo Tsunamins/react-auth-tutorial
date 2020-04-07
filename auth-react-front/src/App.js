@@ -2,6 +2,7 @@ import React from 'react';
 
 import './App.css';
 import Login from "./components/Login"
+import Secrets from "./components/Secrets"
 
 class App extends React.Component {
   constructor(){
@@ -11,7 +12,9 @@ class App extends React.Component {
       loginForm: {
         email: "", 
         password: ""
-      }
+      },
+      // create a piece of state to an empty array
+      secrets: []
 
     }
   }
@@ -57,10 +60,14 @@ class App extends React.Component {
         }
       })
       .catch(console.log) // example of handling javascript errors
-    
-     
+   }
 
-  }
+   getSecrets = () => {
+     fetch("http://localhost:3000")
+      .then(resp => resp.json())
+      .then(console.log)
+    
+   }
 
   render() {
     const {currentUser} =this.state 
@@ -79,6 +86,9 @@ class App extends React.Component {
         email={this.state.loginForm.email}
         password={this.state.loginForm.password}
          />
+      <button onClick={this.getSecrets}>Show User's Secrets</button>
+      {/* will get secrets below from state, so add to state above */}
+      <Secrets secrets={this.state.secrets} />
     </div>
     );
   }
