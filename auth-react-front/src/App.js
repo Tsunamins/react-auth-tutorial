@@ -1,8 +1,9 @@
 import React from 'react';
 
 import './App.css';
-import Login from "./components/Login"
 import Secrets from "./components/Secrets"
+import Login from "./components/Login"
+
 
 class App extends React.Component {
   constructor(){
@@ -63,7 +64,7 @@ class App extends React.Component {
    }
 
    getSecrets = () => {
-     fetch("http://localhost:3000")
+     fetch("http://localhost:3000/secrets")
       .then(resp => resp.json())
       .then(console.log)
     
