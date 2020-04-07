@@ -66,7 +66,18 @@ class App extends React.Component {
    getSecrets = () => {
      fetch("http://localhost:3000/secrets")
       .then(resp => resp.json())
-      .then(console.log)
+      .then(secrets => {
+        if (secrets.error){
+            alert("Not auth for those secrets")
+        } else {
+          // in react get user assoc data with set state, in redux, utilize action...more in globetrotter tutorial
+          this.setState({
+            secrets
+          })
+
+        }
+      })
+      .catch(console.log)
     
    }
 
