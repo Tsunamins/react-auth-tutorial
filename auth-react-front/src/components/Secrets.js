@@ -11,7 +11,7 @@ import React from 'react';
 //and use them in JSX, like erb tags in ruby i.e. run this code in ruby, run this code in javascript
 
 const Secrets = ( {secrets} ) => {
-    const secretsJSX = secrets.map(s => <p>{s.content}</p>)
+    const secretsJSX = secrets.map(s => <p key={s.id}>{s.content}</p>)
     return(
         <div className="Secrets">
              {secretsJSX}
